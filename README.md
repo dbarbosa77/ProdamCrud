@@ -2,7 +2,6 @@
 
 ![image](https://user-images.githubusercontent.com/99232015/215018655-7cadd1cf-e8bf-4759-b2a1-d75262e4a022.png)
 
-   O comando irá criar o banco de dados de acordo com a Migrations criada na pasta, e assim, o programa já estará pronto para ser executado.
 
 ## Sobre:
   O Projeto foi feito com C#, na arquitetura MVC, na View Foi utilizado HTML, CSS e um pouco de Bootstrap.
