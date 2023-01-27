@@ -16,7 +16,7 @@ update-database CoffeeShop
    O comando irá criar o banco de dados de acordo com a Migrations criada na pasta, e assim, o programa já estará pronto para ser executado.
 
 ## Sobre:
-  O Projeto foi feito com C#, no padrão MVC, na View Foi utilizado HTML, CSS e um pouco de Bootstrap.
+  O Projeto foi feito com C#, na arquitetura MVC, na View Foi utilizado HTML, CSS e um pouco de Bootstrap.
 
   Pacotes NuGet que foram utilizados:
   + Entity Framework Core
