@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CoffeeShop.Models.Produto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<body style="background-color: #e5d9be;">
+<h1>Catálogo CoffeeShop</h1>
+<p>
+        <a asp-action="Create" class="btn btn-outline-primary" style="color:black">Cadastrar Novo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th width="20%">
+                Código do Produto
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Nome)*@
+                Nome
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.Valor)*@
+                Valor
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id_produto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                R$@Html.DisplayFor(modelItem => item.Valor),00
+            </td>
+                <td width=20%>
+                <a asp-action="Edit" asp-route-id="@item.Id_produto">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_produto">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_produto">Deletar</a>
+            </td>
+        </tr>
+     }
+    </tbody>
+</table>
+</body>
+

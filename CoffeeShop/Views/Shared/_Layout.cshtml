@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - CoffeeShop</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/CoffeeShop.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom" style="background-color:#562e17">
+        <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+            <img src="..\..\Images\coffee-shop-logo.jpeg" width="90" class="bi me-2" style="border-radius:27px">
+        </a>
+        <ul class="nav col-15 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li><a class="nav-link px-2 link-dark" style="color:ghostwhite" asp-area="" asp-controller="Cliente" asp-action="Index">Clientes</a></li>
+            <li><a class="nav-link px-2 link-dark" style="color:ghostwhite" asp-area="" asp-controller="Produto" asp-action="Index">Produtos</a></li>
+        </ul>
+        <div class="col-md-3 text-end">
+        </div>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted" style="background-color:#be9770">
+        <div class="container" style="color:ghostwhite">
+            &copy; 2023 - CoffeeShop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Créditos</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+
+
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
