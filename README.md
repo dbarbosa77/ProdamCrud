@@ -23,6 +23,8 @@ update-database CoffeeShop
   + Entity Framework Core Design
   + Entity Framework Core SqlServer
   + Entity Framework Core Tools
-  
+
+
+  # Obrigado pela atenção!
   
 
