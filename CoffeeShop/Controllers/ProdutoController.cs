@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CoffeeShop.Contexto;
 using CoffeeShop.Models;
@@ -28,13 +23,13 @@ namespace CoffeeShop.Controllers
         // GET: Produto/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.Id_produto == id);
+                .FirstOrDefaultAsync(m => m.IdProduto == id);
             if (produto == null)
             {
                 return NotFound();
@@ -54,21 +49,18 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_produto,Nome,Valor")] Produto produto)
+        public async Task<IActionResult> Create([Bind("IdProduto,Nome,Valor")] Produto produto)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(produto);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(produto);
+            if (!ModelState.IsValid) return View(produto);
+            _context.Add(produto);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Produto/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -86,46 +78,43 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_produto,Nome,Valor")] Produto produto)
+        public async Task<IActionResult> Edit(int id, [Bind("IdProduto,Nome,Valor")] Produto produto)
         {
-            if (id != produto.Id_produto)
+            if (id != produto.IdProduto)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View(produto);
+            try
             {
-                try
-                {
-                    _context.Update(produto);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProdutoExists(produto.Id_produto))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                _context.Update(produto);
+                await _context.SaveChangesAsync();
             }
-            return View(produto);
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProdutoExists(produto.IdProduto))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Produto/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Produtos == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var produto = await _context.Produtos
-                .FirstOrDefaultAsync(m => m.Id_produto == id);
+                .FirstOrDefaultAsync(m => m.IdProduto == id);
             if (produto == null)
             {
                 return NotFound();
@@ -139,10 +128,6 @@ namespace CoffeeShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Produtos == null)
-            {
-                return Problem("Entity set 'BancoDeDados.Produtos'  is null.");
-            }
             var produto = await _context.Produtos.FindAsync(id);
             if (produto != null)
             {
@@ -155,7 +140,7 @@ namespace CoffeeShop.Controllers
 
         private bool ProdutoExists(int id)
         {
-          return _context.Produtos.Any(e => e.Id_produto == id);
+          return _context.Produtos.Any(e => e.IdProduto == id);
         }
     }
 }

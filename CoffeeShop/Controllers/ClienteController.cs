@@ -28,13 +28,13 @@ namespace CoffeeShop.Controllers
         // GET: Cliente/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.Id_cliente == id);
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -54,21 +54,18 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id_cliente,Nome,Telefone")] Cliente cliente)
+        public async Task<IActionResult> Create([Bind("IdCliente,Nome,Telefone")] Cliente cliente)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(cliente);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(cliente);
+            if (!ModelState.IsValid) return View(cliente);
+            _context.Add(cliente);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Cliente/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null)
             {
                 return NotFound();
             }
@@ -86,9 +83,9 @@ namespace CoffeeShop.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id_cliente,Nome,Telefone")] Cliente cliente)
+        public async Task<IActionResult> Edit(int id, [Bind("IdCliente,Nome,Telefone")] Cliente cliente)
         {
-            if (id != cliente.Id_cliente)
+            if (id != cliente.IdCliente)
             {
                 return NotFound();
             }
@@ -102,7 +99,7 @@ namespace CoffeeShop.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ClienteExists(cliente.Id_cliente))
+                    if (!ClienteExists(cliente.IdCliente))
                     {
                         return NotFound();
                     }
@@ -119,13 +116,13 @@ namespace CoffeeShop.Controllers
         // GET: Cliente/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Clientes == null)
+            if (id == null)
             {
                 return NotFound();
             }
 
             var cliente = await _context.Clientes
-                .FirstOrDefaultAsync(m => m.Id_cliente == id);
+                .FirstOrDefaultAsync(m => m.IdCliente == id);
             if (cliente == null)
             {
                 return NotFound();
@@ -139,10 +136,6 @@ namespace CoffeeShop.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Clientes == null)
-            {
-                return Problem("Entity set 'BancoDeDados.Clientes'  is null.");
-            }
             var cliente = await _context.Clientes.FindAsync(id);
             if (cliente != null)
             {
@@ -155,7 +148,7 @@ namespace CoffeeShop.Controllers
 
         private bool ClienteExists(int id)
         {
-          return _context.Clientes.Any(e => e.Id_cliente == id);
+          return _context.Clientes.Any(e => e.IdCliente == id);
         }
     }
 }

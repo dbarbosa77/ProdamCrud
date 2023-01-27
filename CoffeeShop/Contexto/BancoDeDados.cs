@@ -11,7 +11,7 @@ namespace CoffeeShop.Contexto
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(connectionString: @"Server=(localdb)\Local;Database=CoffeeShop;Integrated Security=True");
+            optionsBuilder.UseSqlite("Filename=banco.db");
         }
     }
 }

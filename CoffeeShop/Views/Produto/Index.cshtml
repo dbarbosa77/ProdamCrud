@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
         <tr>
-            <th width="20%">
+            <th width:20%>
                 Código do Produto
             </th>
             <th>
@@ -30,7 +30,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Id_produto)
+                @Html.DisplayFor(modelItem => item.IdProduto)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Nome)
@@ -38,10 +38,10 @@
             <td>
                 R$@Html.DisplayFor(modelItem => item.Valor),00
             </td>
-                <td width=20%>
-                <a asp-action="Edit" asp-route-id="@item.Id_produto">Editar</a> |
-                <a asp-action="Details" asp-route-id="@item.Id_produto">Detalhes</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id_produto">Deletar</a>
+                <td width:20%>
+                <a asp-action="Edit" asp-route-id="@item.IdProduto">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.IdProduto">Detalhes</a> |
+                <a asp-action="Delete" asp-route-id="@item.IdProduto">Deletar</a>
             </td>
         </tr>
      }
