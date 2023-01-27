@@ -12,6 +12,6 @@
 ```
 update-database CoffeeShop
 ```
-   O comando irá criar o banco de dados de acordo com a Migrations criada na pasta.
+   O comando irá criar o banco de dados de acordo com a Migrations criada na pasta, e assim, o programa já estará pronto para ser executado.
 
 
