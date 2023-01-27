@@ -12,5 +12,6 @@ após conferir a connectionString com o servidor instalado na máquina, escrever
 ```
 update-database CoffeeShop
 ```
+O comando irá criar o banco de dados de acordo com a Migration criada na pasta.
 
 
